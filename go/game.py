@@ -8,7 +8,7 @@ class Stone:
     y: int
     color: bool
     group: "Group" = None
-    prev: int = BOARD_SIZE * x + y
+    prev: tuple = (x, y)
 
     def __str__(self):
         return f"{self.x} {self.y} {"black" if self.color else "white"}"
@@ -25,8 +25,8 @@ class Group:
         self.stones.add(stone)
 
     
-    def unite(self, group1: "Group", group2: "Group") -> "Group":
-        ...
+    def unite(self, group: "Group"):
+        self.stones.intersection(group.stones)
 
     def __del__():
         ...
@@ -37,4 +37,3 @@ class Pole:
 
 class Game:
     ...
-
